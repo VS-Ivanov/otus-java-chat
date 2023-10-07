@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Server {
@@ -37,18 +38,30 @@ public class Server {
 
     public synchronized void subscribe(ClientHandler clientHandler) {
         clients.add(clientHandler);
-        broadcastMessage("Клиент: " + clientHandler.getUsername() + " вошел в чат");
+        broadcastMessage(null,"Клиент: " + clientHandler.getUsername() + " вошел в чат");
     }
 
-    public synchronized void broadcastMessage(String message) {
+    public synchronized void broadcastMessage(ClientHandler sender, String message) {
         for (ClientHandler client : clients) {
-            client.sendMessage(message);
+            //исключаем возможность отправки самому себе
+            if(!Objects.equals(client,sender)) {
+                client.sendMessage(message);
+            }
+        }
+    }
+
+    public synchronized void privateMessage(String username, String message) {
+        for(ClientHandler client: clients) {
+            //отправляем сообщение только нужному пользователю
+            if(Objects.equals(client.getUsername(),username)) {
+                client.sendMessage(message);
+            }
         }
     }
 
     public synchronized void unsubscribe(ClientHandler clientHandler) {
         clients.remove(clientHandler);
-        broadcastMessage("Клиент: " + clientHandler.getUsername() + " вышел из чата");
+        broadcastMessage(null,"Клиент: " + clientHandler.getUsername() + " вышел из чата");
     }
 
     public synchronized List<String> getUserList() {

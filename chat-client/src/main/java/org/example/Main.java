@@ -35,6 +35,8 @@ public class Main extends JFrame implements Runnable {
                     String text = inTextField.getText();
                     try {
                         network.sendMeassage(text);
+                        //очищаем поле сообщения
+                        inTextField.setText("");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -46,8 +48,9 @@ public class Main extends JFrame implements Runnable {
         setVisible(true);
         inTextField.requestFocus();
         (new Thread(this)).start();
+        //сохраняем всю переписку и добавляем новое сообщение
         this.network.setCallback(args -> outTextArea
-                .setText(args[0].toString()));
+                .setText(outTextArea.getText() + args[0].toString()));
     }
 
     public static void main(String[] args) {

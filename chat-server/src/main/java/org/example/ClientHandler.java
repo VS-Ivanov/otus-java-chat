@@ -99,9 +99,17 @@ public class ClientHandler {
                             String.join(", ", userList);
 //                            userList.stream().collect(Collectors.joining(","));
                     sendMessage(joinedUsers);
+                } else if (message.startsWith("/w ")) {
+                    //находим пользователя в чате и отправляем ему сообщение
+                    String[] parsedMsg = message.split(" ",3);
+                    if(server.getUserList().contains(parsedMsg[1])) {
+                        server.privateMessage(parsedMsg[1], "from " + username + ": " + parsedMsg[2]);
+                    } else {
+                        server.privateMessage(username, "from Server: User " + parsedMsg[1] +  " not found in chat!");
+                    }
                 }
             } else {
-                server.broadcastMessage("Server: " + message);
+                server.broadcastMessage(this,username+": " + message);
             }
         }
     }
