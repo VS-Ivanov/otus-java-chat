@@ -22,13 +22,13 @@ public class InMemoryAuthenticationProvider implements AuthenticationProvider {
     }
 
     @Override
-    public synchronized boolean register(String login, String password, String username) {
+    public synchronized boolean register(String login, String password, String username, UserRole role) {
         for (User user : users) {
             if (Objects.equals(user.getUsername(), username) && Objects.equals(user.getLogin(), login)) {
                 return false;
             }
         }
-        users.add(new User(login, password, username));
+        users.add(new User(login, password, username, role));
         return true;
     }
 }

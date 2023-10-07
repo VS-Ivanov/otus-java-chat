@@ -15,11 +15,15 @@ public class ClientHandler {
 
     private String username;
 
+    private UserRole role;
+
     private static int userCount = 0;
 
     public String getUsername() {
         return username;
     }
+
+    public UserRole getUserRole() {return role;}
 
     public ClientHandler(Socket socket, Server server) throws IOException {
         this.socket = socket;
@@ -27,6 +31,7 @@ public class ClientHandler {
         in = new DataInputStream(socket.getInputStream());
         out = new DataOutputStream(socket.getOutputStream());
         username = "User" + userCount++;
+        role = UserRole.USER;
         new Thread(() -> {
             try {
                 authenticateUser(server);
@@ -44,7 +49,7 @@ public class ClientHandler {
         while (!isAuthenticated) {
             String message = in.readUTF();
 //            /auth login password
-//            /register login nick password
+//            /register login nick password role
             String[] args = message.split(" ");
             String command = args[0];
             switch (command) {
@@ -66,11 +71,18 @@ public class ClientHandler {
                     String login = args[1];
                     String nick = args[2];
                     String password = args[3];
-                    boolean isRegistred = server.getAuthenticationProvider().register(login, password, nick);
+                    UserRole role = findRoleByName(args[4]);
+                    //проверяем роль
+                    if(role == null) {
+                        sendMessage("Роль "+args[4]+" не существует!");
+                        continue;
+                    }
+                    boolean isRegistred = server.getAuthenticationProvider().register(login, password, nick, role);
                     if (!isRegistred) {
                         sendMessage("Указанный логин/никнейм уже заняты");
                     } else {
                         this.username = nick;
+                        this.role = role;
                         sendMessage(nick + ", добро пожаловать в чат!");
                         server.subscribe(this);
                         isAuthenticated = true;
@@ -100,13 +112,11 @@ public class ClientHandler {
 //                            userList.stream().collect(Collectors.joining(","));
                     sendMessage(joinedUsers);
                 } else if (message.startsWith("/w ")) {
-                    //находим пользователя в чате и отправляем ему сообщение
                     String[] parsedMsg = message.split(" ",3);
-                    if(server.getUserList().contains(parsedMsg[1])) {
-                        server.privateMessage(parsedMsg[1], "from " + username + ": " + parsedMsg[2]);
-                    } else {
-                        server.privateMessage(username, "from Server: User " + parsedMsg[1] +  " not found in chat!");
-                    }
+                    server.privateMessage(this,parsedMsg[1],parsedMsg[2]);
+                } else if (message.startsWith("/kick ")) {
+                    String[] parsedMsg = message.split(" ",2);
+                    server.kickUser(this,parsedMsg[1]);
                 }
             } else {
                 server.broadcastMessage(this,username+": " + message);
@@ -147,4 +157,18 @@ public class ClientHandler {
             disconnect();
         }
     }
+
+    //находим роль по ее имени
+    private UserRole findRoleByName(String roleName) {
+        UserRole result = null;
+
+        for(UserRole role: UserRole.values()) {
+            if(role.name().equalsIgnoreCase(roleName)) {
+                result = role;
+                break;
+            }
+        }
+        return result;
+    }
+
 }

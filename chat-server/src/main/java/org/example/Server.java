@@ -50,13 +50,44 @@ public class Server {
         }
     }
 
-    public synchronized void privateMessage(String username, String message) {
-        for(ClientHandler client: clients) {
-            //отправляем сообщение только нужному пользователю
-            if(Objects.equals(client.getUsername(),username)) {
-                client.sendMessage(message);
-            }
+    public synchronized void privateMessage(ClientHandler sender, String username, String message) {
+        //фильтруем пользователей
+        List<ClientHandler> filteredClients = clients.stream()
+                .filter(client -> Objects.equals(client.getUsername(),username))
+                .collect(Collectors.toList());
+
+        if(filteredClients.isEmpty()){
+            sender.sendMessage("Пользователь "+username+" не найден в чате");
+            return;
         }
+
+        //отправляем сообщение
+        for(ClientHandler client: filteredClients) {
+            client.sendMessage("from "+sender.getUsername()+": "+message);
+        }
+    }
+
+    public synchronized void kickUser(ClientHandler kicker, String username) {
+        //сразу проверяем достаточно ли прав
+        if(kicker.getUserRole() != UserRole.ADMIN) {
+            kicker.sendMessage("У вас должна быть роль ADMIN чтобы удалить пользователя из чата");
+            return;
+        }
+
+        List<ClientHandler> filteredClients = clients.stream()
+                .filter(client -> Objects.equals(client.getUsername(),username))
+                .collect(Collectors.toList());
+
+        if(filteredClients.isEmpty()) {
+            kicker.sendMessage("Пользователь "+username+" не найден в чате.");
+            return;
+        }
+
+        for(ClientHandler client: filteredClients) {
+            client.sendMessage("Вы удалены из чата пользователем "+kicker.getUsername());
+            client.disconnect();
+        }
+
     }
 
     public synchronized void unsubscribe(ClientHandler clientHandler) {
