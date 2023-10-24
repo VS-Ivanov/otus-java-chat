@@ -31,4 +31,14 @@ public class InMemoryAuthenticationProvider implements AuthenticationProvider {
         users.add(new User(login, password, username, role));
         return true;
     }
+
+    @Override
+    public UserRole getUserRoleByUsername(String username) {
+        for (User user: users) {
+            if(Objects.equals(user.getUsername(),username)) {
+                return user.getUserRole();
+            }
+        }
+        return null;
+    }
 }

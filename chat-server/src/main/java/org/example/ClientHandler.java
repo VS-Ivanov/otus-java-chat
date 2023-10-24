@@ -61,6 +61,7 @@ public class ClientHandler {
                         sendMessage("Указан неверный логин/пароль");
                     } else {
                         this.username = username;
+                        this.role = server.getAuthenticationProvider().getUserRoleByUsername(username);
                         sendMessage(username + ", добро пожаловать в чат!");
                         server.subscribe(this);
                         isAuthenticated = true;

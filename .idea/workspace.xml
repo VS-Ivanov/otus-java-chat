@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f43b5a2f-e272-4a21-ac71-8bc8e548c37a" name="Changes" comment="hw 22">
-      <change afterPath="$PROJECT_DIR$/chat-server/src/main/java/org/example/UserRole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/chat-server/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chat-server/src/main/java/org/example/AuthenticationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-server/src/main/java/org/example/AuthenticationProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chat-server/src/main/java/org/example/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-server/src/main/java/org/example/ClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chat-server/src/main/java/org/example/InMemoryAuthenticationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-server/src/main/java/org/example/InMemoryAuthenticationProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-server/src/main/java/org/example/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-server/src/main/java/org/example/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-server/src/main/java/org/example/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-server/src/main/java/org/example/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/AuthenticationProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat-server/org/example/AuthenticationProvider.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat-server/org/example/ClientHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/InMemoryAuthenticationProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat-server/org/example/InMemoryAuthenticationProvider.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat-server/org/example/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat-server/org/example/User.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,17 +46,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-16",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-16&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.example" />
@@ -76,7 +72,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="chat-client" />
