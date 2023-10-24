@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Server {
@@ -37,18 +38,61 @@ public class Server {
 
     public synchronized void subscribe(ClientHandler clientHandler) {
         clients.add(clientHandler);
-        broadcastMessage("Клиент: " + clientHandler.getUsername() + " вошел в чат");
+        broadcastMessage(null,"Клиент: " + clientHandler.getUsername() + " вошел в чат");
     }
 
-    public synchronized void broadcastMessage(String message) {
+    public synchronized void broadcastMessage(ClientHandler sender, String message) {
         for (ClientHandler client : clients) {
-            client.sendMessage(message);
+            //исключаем возможность отправки самому себе
+            if(!Objects.equals(client,sender)) {
+                client.sendMessage(message);
+            }
         }
+    }
+
+    public synchronized void privateMessage(ClientHandler sender, String username, String message) {
+        //фильтруем пользователей
+        List<ClientHandler> filteredClients = clients.stream()
+                .filter(client -> Objects.equals(client.getUsername(),username))
+                .collect(Collectors.toList());
+
+        if(filteredClients.isEmpty()){
+            sender.sendMessage("Пользователь "+username+" не найден в чате");
+            return;
+        }
+
+        //отправляем сообщение
+        for(ClientHandler client: filteredClients) {
+            client.sendMessage("from "+sender.getUsername()+": "+message);
+        }
+    }
+
+    public synchronized void kickUser(ClientHandler kicker, String username) {
+        //сразу проверяем достаточно ли прав
+        if(kicker.getUserRole() != UserRole.ADMIN) {
+            kicker.sendMessage("У вас должна быть роль ADMIN чтобы удалить пользователя из чата");
+            return;
+        }
+
+        List<ClientHandler> filteredClients = clients.stream()
+                .filter(client -> Objects.equals(client.getUsername(),username))
+                .collect(Collectors.toList());
+
+        if(filteredClients.isEmpty()) {
+            kicker.sendMessage("Пользователь "+username+" не найден в чате.");
+            return;
+        }
+
+        for(ClientHandler client: filteredClients) {
+            client.sendMessage("Вы удалены из чата пользователем "+kicker.getUsername());
+            client.disconnect();
+        }
+
     }
 
     public synchronized void unsubscribe(ClientHandler clientHandler) {
         clients.remove(clientHandler);
-        broadcastMessage("Клиент: " + clientHandler.getUsername() + " вышел из чата");
+        broadcastMessage(null,"Клиент: " + clientHandler.getUsername() + " вышел из чата");
     }
 
     public synchronized List<String> getUserList() {

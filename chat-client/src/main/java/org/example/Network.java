@@ -26,7 +26,7 @@ public class Network implements AutoCloseable {
                 while(true) {
                     String message = in.readUTF();
                     if (callback != null) {
-                        callback.call(message);
+                        callback.call(message+"\n");
                     }
                 }
             } catch (IOException e) {
@@ -64,5 +64,8 @@ public class Network implements AutoCloseable {
 
     public void sendMeassage(String msg) throws IOException {
         out.writeUTF(msg);
+        if(callback != null) {
+            callback.call("Вы: "+msg+"\n");
+        }
     }
 }
