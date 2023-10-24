@@ -4,15 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f43b5a2f-e272-4a21-ac71-8bc8e548c37a" name="Changes" comment="hw 22">
+    <list default="true" id="f43b5a2f-e272-4a21-ac71-8bc8e548c37a" name="Changes" comment="hw 25">
+      <change afterPath="$PROJECT_DIR$/chat-server/src/main/java/org/example/InSqlAuthenticationProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/chat-server/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-server/src/main/java/org/example/AuthenticationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-server/src/main/java/org/example/AuthenticationProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-server/src/main/java/org/example/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-server/src/main/java/org/example/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-server/src/main/java/org/example/InMemoryAuthenticationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-server/src/main/java/org/example/InMemoryAuthenticationProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/AuthenticationProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat-server/org/example/AuthenticationProvider.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat-server/org/example/ClientHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/InMemoryAuthenticationProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chat-server/org/example/InMemoryAuthenticationProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-server/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-server/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat-client/org/example/Callback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat-client/org/example/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat-client/org/example/Network.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/AuthenticationProvider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/ClientHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/InMemoryAuthenticationProvider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chat-server/org/example/User.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -37,6 +43,13 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -139,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696674881338</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="hw 25">
+      <created>1698168994712</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1698168994712</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -156,7 +176,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="hw 22" />
-    <option name="LAST_COMMIT_MESSAGE" value="hw 22" />
+    <MESSAGE value="hw 25" />
+    <option name="LAST_COMMIT_MESSAGE" value="hw 25" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
